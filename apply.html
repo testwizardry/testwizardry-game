@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<title>TestWizardry - Apply</title>
+
+		<script>
+
+
+			function applyToHogwarts() {
+				console.log("apply!")
+				alert("Your owl flutters off with the application clutched in it's talons!");
+
+				var player_name = document.getElementsByName("player_name")[0].value;
+				var player_gender = document.getElementsByName("player_gender")[0].value;
+				var player_age = document.getElementsByName("player_age")[0].value;
+
+				//var player = new Player(player_name, player_gender, player_age);
+				//Hogwarts.apply(player);
+
+				console.log("name: " + player_name);
+				console.log("age: " + player_age);
+				console.log("gender: " + player_gender);
+
+				if (player_gender == "male")
+				{
+					alert("You're a wizard, " + player_name);
+				}
+				else if (player_gender == "female")
+				{
+					alert("You're a witch, " + player_name);
+				}
+
+				var accepted = true;
+
+				if (player_age > 11)
+				{
+					alert("But you're too old to apply to Hogwarts");
+					accepted == false;
+				}
+				else if (player_age < 11)
+				{
+					alert("But you're too young to apply to Hogwarts");
+					accepted == false;
+				}
+
+				if (accepted)
+				{
+					document.location.href="/accepted.html"
+				}
+				else
+				{
+					document.location.href="/rejected.html"
+				}
+
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Apply to Hogwart's</h1>
+
+		<form name="apply">
+			<p>What is your name?</p>
+			<input name="player_name"/>
+
+			<p>Are you male or female?</p>
+			<input name="player_gender"/>
+
+			<p>How old are you?</p>
+			<input name="player_age"/>
+
+			<input type="button" value="Send Application" onclick="applyToHogwarts()"/>
+
+		</form>
+
+
+	</body>
+</html>
