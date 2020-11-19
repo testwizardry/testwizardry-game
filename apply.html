@@ -1,8 +1,13 @@
 <html>
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 		<title>TestWizardry - Apply</title>
 
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="style.css"/>
+
 
 		<script>
 			function apply() {
@@ -20,6 +25,12 @@
 				console.log("age: " + player_age);
 				console.log("gender: " + player_gender);
 
+
+				document.cookie = "player_name=" + player_name;
+				document.cookie = "player_gender=" + player_gender;
+				document.cookie = "player_age=" + player_age;
+				
+
 				if (player_gender == "male")
 				{
 					alert("You're a wizard, " + player_name);
@@ -34,14 +45,15 @@
 				if (player_age > 11)
 				{
 					alert("But you're too old to apply to Hogwarts");
-					accepted == false;
+					accepted = false;
 				}
 				else if (player_age < 11)
 				{
 					alert("But you're too young to apply to Hogwarts");
-					accepted == false;
+					accepted = false;
 				}
 
+				
 				if (accepted)
 				{
 					document.location.href="/accepted.html"
@@ -55,22 +67,24 @@
 		</script>
 	</head>
 	<body>
-		<h1>Apply to Hogwart's</h1>
+		<div class="page">
 
-		<form name="apply">
-			<p>What is your name?</p>
-			<input name="player_name"/>
+			<h1>Apply to Hogwart's</h1>
 
-			<p>Are you male or female?</p>
-			<input name="player_gender"/>
+			<form name="apply">
+				<p>What is your name?</p>
+				<input name="player_name"/>
 
-			<p>How old are you?</p>
-			<input name="player_age"/>
+				<p>Are you male or female?</p>
+				<input name="player_gender"/>
 
-			<input type="button" value="Send Application" onclick="window.apply()"/>
+				<p>How old are you?</p>
+				<input name="player_age"/>
 
-		</form>
+				<input style="width: 100%; max-width: 400px" class="button" type="button" value="Send Application" onclick="window.apply()"/>
 
+			</form>
 
+		</div>
 	</body>
 </html>
