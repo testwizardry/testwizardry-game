@@ -29,6 +29,9 @@ jobs:
           npm test
 
       - name: run sauce labs UI tests
+        with:
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
         run: |
           npm run sauce:test
       
