@@ -30,6 +30,6 @@ jobs:
 
       - name: run sauce labs UI tests
         run: |
-          npm sauce:test
+          npm run sauce:test
       
             
