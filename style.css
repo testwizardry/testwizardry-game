@@ -43,6 +43,13 @@ a.button {
     color: white;
 }
 
+input {
+    font-size: 1.5rem;
+    padding: 0.4rem;
+    font-family: 'EB Garamond';
+    font-weight: 400;
+}
+
 input.button {
     display: block;
     border: 2px solid black;
