@@ -6,8 +6,8 @@
   "scripts": {
     "test": "mocha",
     "build": "echo building .... nothing",
-    "local:test": "wdio --config local.wdio.conf.js",
-    "sauce:test": "wdio --config sauce.wdio.conf.js"
+    "local:test": "wdio run local.wdio.conf.js",
+    "sauce:test": "wdio run sauce.wdio.conf.js"
   },
   "repository": {
     "type": "git",
