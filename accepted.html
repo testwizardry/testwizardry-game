@@ -9,8 +9,8 @@
 		<link rel="stylesheet" href="style.css"/>
 
 		<script>
-			var player_surname = "Potter";
-			var player_title = "Mr.";
+			var character_surname = "Potter";
+			var character_title = "Mr.";
 
 			console.log(document.cookie);
 
@@ -32,33 +32,33 @@
 			{
 				var cookies = getCookies();
 				console.log("cookies", cookies);
-				console.log("player_gender", cookies.player_gender);
+				console.log("character_gender", cookies.character_gender);
 
 				var salutation;
 				var wizard_or_witch;
 				var first_name;
 				var last_name;
 
-				var name = cookies.player_name.split(' ', 2);
+				var name = cookies.character_name.split(' ', 2);
 				console.log(name);
 				first_name = name[0];
 				last_name = name[1];
 
-				if (cookies.player_gender == "male") {
+				if (cookies.character_gender == "male") {
 					salutation = "Mister";
 					wizard_or_witch = "wizard";
 				}
 
-				if (cookies.player_gender == "female") {
+				if (cookies.character_gender == "female") {
 					salutation = "Miss";
 					wizard_or_witch = "wizard";
 				}
 
-				document.cookie = "player_salutation=" + salutation;
-				document.cookie = "player_wizardorwitch=" + wizard_or_witch;
-				document.cookie = "player_salutation=" + salutation;
+				document.cookie = "character_salutation=" + salutation;
+				document.cookie = "character_wizardorwitch=" + wizard_or_witch;
+				document.cookie = "character_salutation=" + salutation;
 
-				if (cookies.player_name.split(' '))
+				if (cookies.character_name.split(' '))
 				setSalutation(salutation);
 				setSurname(last_name);
 			}

@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>TestWizardry - Character</title>
+
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="style.css"/>
+
+		<script>
+			function getCharacterInfo()
+			{
+				console.log("getting character info...");
+				let character_name = localStorage.getItem("character_name");
+				let character_gender = localStorage.getItem("character_gender");
+				let character_age = localStorage.getItem("character_age");
+				let character_status = localStorage.getItem("character_status");
+				
+				console.log("character_name: ", character_name);
+				console.log("character_gender: ", character_gender);
+				console.log("character_age: ", character_age);
+				console.log("character_status: ", character_status);
+
+				document.getElementById("character_name").value =  character_name;
+				document.getElementById("character_gender").value =  character_gender;
+				document.getElementById("character_age").value =  character_age;
+				
+				if (character_status == "wizard")
+				{
+					document.getElementById("character_status_wizard").checked = true
+
+				}
+				else
+				{
+					document.getElementById("character_status_muggle").checked = true;
+				}
+
+			}
+		</script>
+	</head>
+	<body onload="getCharacterInfo()">
+		<div class="page">
+            
+            <h1>Test Wizardry</h1>
+            <h2>Character</h2>
+
+			<form name="character">
+				<p>
+					<label for="character_name">Name</label>
+				</p>
+				<input name="character_name" id="character_name"/>
+			
+
+				<p>
+					<label for="character_age">Age</label>
+				</p>
+				<input name="character_age" id="character_age"/>
+
+
+				<p>
+					<label for="character_gender">Gender</label>
+				</p>
+				<select name="character_gender" id="character_gender">
+					<option value="" selected></option>
+					<option value="male">male</option>
+					<option value="female">female</option>
+				</select>
+
+
+				<p>
+					<input name="character_status" id="character_status_wizard" type="radio" 	/>
+					<label for="character_status">Wizard</label>
+					<br/>
+					<input name="character_status" id="character_status_muddle" type="radio" />
+					<label for="character_status">Muggle</label>
+				</p>
+
+			</form>
+
+        </div>
+    </body>
+</html>
