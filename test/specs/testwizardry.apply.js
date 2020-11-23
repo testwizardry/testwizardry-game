@@ -3,9 +3,10 @@ describe("TestWizardry", function() {
         browser.url("/");
         $('#apply').click();
 
-        $('[name=player_name]').setValue('Harry Potter');
-        $('[name=player_gender]').setValue('male');
-        $('[name=player_age]').setValue('11');
+        $('#character_name').setValue('Harry Potter');
+        $('#character_gender').selectByVisibleText('male');
+        $('#character_age').setValue('11');
+        $('#character_status_wizard').click();
         $('[value="Send Application"]').click();
 
         expect($('h2')).toHaveTextContaining("Congratulations");

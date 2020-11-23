@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha",
     "build": "echo building .... nothing",
-    "sauce:test": "wdio --config wdio.conf.js"
+    "local:test": "wdio --config local.wdio.conf.js",
+    "sauce:test": "wdio --config sauce.wdio.conf.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,8 @@
     "@wdio/spec-reporter": "^6.8.1",
     "@wdio/sync": "^6.9.1",
     "chai": "^4.2.0",
-    "mocha": "^8.2.1"
+    "chromedriver": "^87.0.0",
+    "mocha": "^8.2.1",
+    "wdio-chromedriver-service": "^6.0.4"
   }
 }
