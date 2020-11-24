@@ -1,0 +1,137 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Test Wizardry</title>
+
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="/style.css"/>
+
+	</head>
+	<body>
+		<div class="page">
+			<!-- <h1>TeSt WIzaRdRy</h1> -->
+			
+			<img style="width: 260px" src="/images/testwizardry.png" alt="Test Wizardry" title="Test Wizardry"/>
+
+            <form name="characterForm">
+				
+				<p>
+					<label for="character_name">
+						What is your name?
+					</label>
+				</p>
+				<input name="character_name" id="character_name" onchange="updateCharacter(this)"/>
+
+				<p>
+					<label for="character_gender">Are you male or female?</label>
+				</p>
+				<select name="character_gender" id="character_gender" onchange="updateCharacter(this)">
+					<option value="" selected></option>
+					<option value="male" id="character_gender_male">male</option>
+					<option value="female" id="character_gender_female">female</option>
+				</select>
+
+
+				<p>
+					<label for="character_age">How old are you?</label>
+				</p>
+				<input name="character_age" id="character_age" onchange="updateCharacter(this)"/>
+
+
+				<p>
+					Are you magical or a muggle?
+				<p>	
+				<p>
+					<input name="character_status" id="character_status_magical" type="radio" value="magical"  onchange="updateCharacter(this)"/>
+					<label for="character_status">Magical</label>
+					<br/>
+					<input name="character_status" id="character_status_muggle" type="radio" value="muggle"   onchange="updateCharacter(this)"/>
+					<label for="character_status">Muggle</label>
+
+				</p>
+
+				<br/>
+
+				<input class="button" type="button" value="Save Character" onclick="saveCharacter()"/>
+
+                <button class="button" onclick="showCharacter()">Show Character </button>
+        
+        <script>
+
+            var character = {
+                name: "Ron Weasley",
+                age: 11,
+                gender: "male",
+                magical: true,
+
+                salutation: function() {
+                    if (this.gender == 'male')
+                    {
+                        return "Mr."
+                    }
+                    else {
+                        return "Ms."
+                    }
+                },
+
+                category: function() {
+                    if (! this.magical) 
+                    {
+                        return 'muggle'
+                    }
+
+                    if (this.gender == 'male')
+                    {
+                        return "wizard"
+                    }
+
+                    if (this.gender == 'female')
+                    {
+                        return 'witch'
+                    }
+                }
+            }
+
+            function updateCharacter(element)
+            {
+                console.log(element);
+
+                let key = element.getAttribute("name");
+				let value = element.value;
+
+				console.log("updating character...",  element, key, value);
+				console.log("saving to local storage");
+				localStorage.setItem(key, value);
+            }
+
+            function saveCharacter()
+            {
+                var form = document.forms.characterForm;
+                console.log("form", form);
+                var fields = characterForm.elements;
+                console.log("fields", fields);
+
+                
+                console.log(form.elements.character_name)
+                console.log(form.elements.character_age)
+
+                elements = Array.from(fields);
+                console.log(elements);
+                elements.forEach(element => console.log(element.value))
+
+            }
+
+            function showCharacter()
+            {
+                console.log("character", character);
+                console.log(character.salutation());
+                console.log(character.category());
+            }
+
+        </script>
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,140 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>TestWizardry - Character</title>
+
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="style.css"/>
+
+		<link rel="icon" href="images/sortinghat.png"/>
+
+	</head>
+	<body onload="">
+		<div class="page">
+            
+            <h1>Test Wizardry</h1>
+            <h2>Character</h2>
+
+			<form name="character">
+				<p>
+					<label for="character_name">Name</label>
+				</p>
+				<input name="character_name" id="character_name"/>
+			
+
+				<p>
+					<label for="character_age">Age</label>
+				</p>
+				<input name="character_age" id="character_age"/>
+
+
+				<p>
+					<label for="character_gender">Gender</label>
+				</p>
+				<select name="character_gender" id="character_gender">
+					<option value="" selected></option>
+					<option value="male">male</option>
+					<option value="female">female</option>
+				</select>
+
+
+				<p>
+					<input name="character_status" id="character_status_wizard" type="radio" 	/>
+					<label for="character_status">Wizard</label>
+					<br/>
+					<input name="character_status" id="character_status_muddle" type="radio" />
+					<label for="character_status">Muggle</label>
+				</p>
+
+				<p>
+					<input class="button" type="button" value="Save Character" onclick="saveCharacter(getCharacterFormData())"/>
+
+				</p>
+			</form>
+
+		</div>
+		
+
+
+		<script>
+			function saveCharacter(character)
+			{
+				console.log('saveCharacter()', character);
+
+				window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+				window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction || {READ_WRITE: "readwrite"};
+				window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
+
+				if (!window.indexedDB) {
+					console.log("Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available.");
+				}
+
+				let request = window.indexedDB.open("TestWizardry", 2);
+
+				request.onupgradeneeded = function() {
+					console.log("onupgradeneeded");
+					console.log("upgrade needed");
+				}
+
+				request.onerror = function(event) {
+					console.log("onfailure");
+					
+					console.log("failed to add character", character);
+					console.error("Database error: " + event.target.errorCode);
+				};
+
+				request.onsuccess = function(event) {
+					console.log("onsuccess");
+					
+					let db = event.target.result;
+				
+					//if (!db.objectStoreNames.contains('TestWizardry')) { 
+					//	db.createObjectStore('TestWizardry', {keyPath: 'name', autoIncrement: true});
+					//	console.log("createed object store, refresh page");
+					//}
+					
+					console.log("successfully added character", character);
+					useDatabase(db);
+					return;
+				};
+
+				function useDatabase(db) {
+					db.onversionchange = function(event) {
+					  db.close();
+					  console.log("A new version of this page is ready. Please reload or close this tab!");
+					};
+				  
+					// Do stuff with the database.
+
+					//db.createObjectStore("TestWizardry");
+					let transaction = db.transaction("TestWizardry", "readwrite"); // (1)
+					let tw = transaction.objectStore("TestWizardry"); // (2)
+					let request = tw.add(character);
+				}
+			}
+
+			function getCharacterFormData()1    
+			{
+				let name = document.querySelector("#character_name").value;
+				let age = document.querySelector("#character_age").value;
+				let gender = document.querySelector("#character_gender");
+						
+				gender = gender.options[gender.selectedIndex].value;
+				
+				let status = document.querySelectorAll("#character_status").find(element);
+
+				let character = {
+					name: name,
+					age: age,
+					gender: gender,
+					status: status
+				}
+
+				console.log("character", character);
+				return character;
+			}
+		</script>
+    </body>
+</html>
