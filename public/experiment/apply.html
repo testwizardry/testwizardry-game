@@ -1,0 +1,84 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>TestWizardry - Apply</title>
+
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="/styles/testwizardry.css"/>
+        
+        <script src="./character.js"></script>
+        <script src="./apply.js"></script>
+	</head>
+	<body>
+		<div class="page">
+
+            <h1>TeSt WiZaRdRY</h1>
+
+            <form name="characterForm">
+            
+                <p>
+                    <label for="name">
+                        What is your name?
+                    </label>
+                </p>
+                <input name="name" onchange="validate_name(this)"/>
+                <div class="validation" id="name_validation"></div>
+
+                <p>
+                    <label for="age">
+                        How old are you?
+                    </label>
+                </p>
+                <input name="age" onchange="validate_age(this)"/>
+                <div class="validation" id="age_validation"></div>
+
+                <p>
+                    <label for="gender">
+                        Are you male or female?
+                    </label>
+                </p>
+                <select name="gender" onchange="validate_gender(this)">
+                    <option value="" selected disabled></option>
+                    <option value="male">male</option>
+                    <option value="female">female</option>
+                </select>
+                <div class="validation" id="gender_validation"></div>
+                
+                <p>
+                    <label for="magical">
+                        Do you have magical abilities?        
+                    </label>
+                </p>
+                <!-- <select name="magical" onchange="validate_magical()">
+                    <option value="" selected disabled></option>
+                    <option value="yes">yes</option>
+                    <option value="no">no</option>
+                </select> -->
+
+                <input type="radio" name="magical" id="magical_yes" value="yes" onchange="validate_magical(this)">
+                    <label for="magical_yes">
+                        yes
+                    </label>
+                </input>
+                
+                    <span style="display: inline-block; width: 30px"></span>
+
+                <input type="radio" name="magical" id="magical_no" value="no" onchange="validate_magical(this)">
+                    <label for="magical_no">
+                        no 
+                    </label>
+                </input>
+                <div class="validation" id="magical_validation"></div>
+
+
+                <br/><br/><br/>
+
+                <input type="button" value="save" onclick="saveCharacter()" />
+                
+
+            </form>
+        </div>
+    </body>
+</html>

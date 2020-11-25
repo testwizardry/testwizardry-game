@@ -8,75 +8,6 @@
 		<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="/styles/testwizardry.css"/>
 
-		<script src="/scripts/testwizardry/character.js"></script>
-
-		<script>
-			function updateCharacter(element)
-			{
-				let key = element.getAttribute("name");
-				let value = element.value;
-
-				console.log("updating character...",  element, key, value);
-				console.log("saving to local storage");
-				localStorage.setItem(key, value);
-			}
-
-			function sendApplication() {
-				console.log("send application to Hogwards!")
-				//alert("Your owl flutters off with the application clutched in it's talons!");
-
-				var character_name = document.getElementsByName("character_name")[0].value;
-				var character_gender = document.getElementsByName("character_gender")[0].value;
-				var character_age = document.getElementsByName("character_age")[0].value;
-				var character_status = document.getElementsByName("character_status")[0].value;
-				//var player = new Player(character_name, character_gender, character_age);
-				//Hogwarts.apply(player);
-
-				console.log("name: " + character_name);
-				console.log("age: " + character_age);
-				console.log("gender: " + character_gender);
-				console.log("status: " + character_status);
-
-				document.cookie = "character_name=" + character_name;
-				document.cookie = "character_gender=" + character_gender;
-				document.cookie = "character_age=" + character_age;
-				document.cookie = "character_status=" + character_age;
-
-
-				if (character_gender == "male")
-				{
-					//alert("You're a wizard, " + character_name);
-				}
-				else if (character_gender == "female")
-				{
-					//alert("You're a witch, " + character_name);
-				}
-
-				var accepted = true;
-
-				if (character_age > 11)
-				{
-					alert("But you're too old to apply to Hogwarts");
-					accepted = false;
-				}
-				else if (character_age < 11)
-				{
-					alert("But you're too young to apply to Hogwarts");
-					accepted = false;
-				}
-
-				
-				if (accepted)
-				{
-					document.location.href="/accepted.html"
-				}
-				else
-				{
-					document.location.href="/rejected.html"
-				}
-
-			}
-		</script>
 	</head>
 	<body>
 		<div class="page">
@@ -124,10 +55,13 @@
 
 				<input class="button" type="button" value="Send Application" onclick="sendApplication()"/>
 
-
-				
 			</form>
 
 		</div>
+
+
+		<!-- <script src="/scripts/testwizardry/Person.js" ></script> -->
+
+		<script src="/scripts/testwizardry/apply-to-hogwarts.js" type="module"></script>
 	</body>
 </html>

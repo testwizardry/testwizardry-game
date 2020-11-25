@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+    <body>
+        I'm going to say hi
+        <button onclick="greet()">Say HI</button>
+      
+        <div id="content" style="border: 1px solid black; padding: 10px"></div>
+        
+        <script type="module">
+            import {sayHi} from './say.js';
+
+
+            var element = document.getElementById("content");
+            element.innerText = sayHi("Aaron & Divya");
+            
+
+          </script>
+
+          <script type="module">
+            import {sayHi} from './say.js';
+
+            function greet() {
+
+                var element = document.getElementById("content");
+
+                var message = document.createElement('p');
+                message.innerText = "greeting: " + sayHi("Divya");
+
+                element.appendChild(message);
+            }
+          </script>
+    </body>
+</html>
