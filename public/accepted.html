@@ -9,77 +9,15 @@
 		<link rel="stylesheet" href="/styles/testwizardry.css"/>
 
 		<script>
-			var character_surname = "Potter";
-			var character_title = "Mr.";
 
-			console.log(document.cookie);
-
-			function getCookies()
+			async function getPlayerInfo()
 			{
-				var cookies = {};
+				var player_character = localStorage.getItem("player_character");
+				console.log("player_character", player_character);
 
-				for (var cookie of document.cookie.split(';'))
-				{
-					var [key, value] = cookie.trim().split("=");
-					cookies[key] = value;
-				}
-
-				return cookies;
-			}
-
-
-			function getPlayerInfo()
-			{
-				var cookies = getCookies();
-				console.log("cookies", cookies);
-				console.log("character_gender", cookies.character_gender);
-
-				var salutation;
-				var wizard_or_witch;
-				var first_name;
-				var last_name;
-
-				var name = cookies.character_name.split(' ', 2);
-				console.log(name);
-				first_name = name[0];
-				last_name = name[1];
-
-				if (cookies.character_gender == "male") {
-					salutation = "Mister";
-					wizard_or_witch = "wizard";
-				}
-
-				if (cookies.character_gender == "female") {
-					salutation = "Miss";
-					wizard_or_witch = "wizard";
-				}
-
-				document.cookie = "character_salutation=" + salutation;
-				document.cookie = "character_wizardorwitch=" + wizard_or_witch;
-				document.cookie = "character_salutation=" + salutation;
-
-				if (cookies.character_name.split(' '))
-				setSalutation(salutation);
-				setSurname(last_name);
-			}
-			
-			function setSalutation(salutation)
-			{
-				console.log("setSalutation", salutation)
-				var element  = document.getElementById("salutation");
-				console.log(element);
-				element.innerText = salutation;
 
 			}
-
-			function setSurname(surname)
-			{
-				console.log("setSurname", surname);
-				var element  = document.getElementById("surname");
-				console.log(element);
-				element.innerText = surname;
-			}
-
+		
 			document.addEventListener("DOMContentLoaded", getPlayerInfo);
 		</script>
 	</head>
@@ -122,6 +60,8 @@
 				<a class="button" href="diagon-alley.html">Go to Diagon Alley</a>
 			</p>
 
-		</div>]
+		</div>
+
+
 	</body>
 </html>

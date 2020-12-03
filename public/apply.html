@@ -26,6 +26,7 @@
 				<p>
 					<label for="character_gender">Are you male or female?</label>
 				</p>
+
 				<select name="character_gender" id="character_gender" onchange="updateCharacter(this)">
 					<option value="" selected></option>
 					<option value="male" id="character_gender_male">male</option>
@@ -45,6 +46,7 @@
 				<p>
 					<input name="character_status" id="character_status_wizard" type="radio" value="wizard"  onchange="updateCharacter(this)"/>
 					<label for="character_status">Wizard</label>
+
 					<br/>
 					<input name="character_status" id="character_status_muggle" type="radio" value="muggle"   onchange="updateCharacter(this)"/>
 					<label for="character_status">Muggle</label>
@@ -59,9 +61,7 @@
 
 		</div>
 
+		<script src="/scripts/testwizardry/apply.js" ></script>
 
-		<!-- <script src="/scripts/testwizardry/Person.js" ></script> -->
-
-		<script src="/scripts/testwizardry/apply-to-hogwarts.js" type="module"></script>
 	</body>
 </html>

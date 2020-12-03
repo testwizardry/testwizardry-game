@@ -1,0 +1,18 @@
+<html>
+    <body>
+        Hello!
+
+        <button onclick="hello()">Say Hello</button>
+
+        <script src="hello.js" type="module"></script>
+        <script>
+            let hello = await import("./hello.js");
+            console.log(hello);
+
+            function hello()
+            {
+                alert("Hello!")
+            }
+        </script>
+    </body>
+</html>

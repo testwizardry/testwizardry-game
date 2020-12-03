@@ -13,10 +13,33 @@ class Person {
         this.name = name;
         this.age = age;
         this.gender = gender;
-        this.magical = magical;
+        this.magical = this.valid_magical(magical);
         this.inventory = [];
     }
     
+    valid_magical(value)
+    {
+        if (value == true || value == false)
+        {
+            return value;
+        }
+
+        if ((typeof value)  == "string")
+        {
+            switch(value.toLowerCase())
+            {
+                case "wizard":
+                    return true;
+                case "witch":
+                    return true;
+                case "muggle":
+                    return false;
+                default: 
+                    return undefined;
+            }
+        }
+    }
+
     get allNames() {
         return this.name.split(" ");
     }
@@ -42,7 +65,7 @@ class Person {
         }
     }
 
-    get type() {
+    get status() {
         if (! this.magical)
         {
             return 'muggle';
@@ -61,6 +84,11 @@ class Person {
         {
             return undefined;
         }
+    }
+
+    useItem(item)
+    {
+        console.log("TODO: implement use item");
     }
 }
 
@@ -84,12 +112,12 @@ class WizardKind extends Person
 
     castSpell(spell)
     {
-        console.log("cast spell")
+        console.log("TODO: implement cast spell")
     }
 
     brewPotion(potion)
     {
-        console.log("brew potion");
+        console.log("TODO: implement brew potion");
     }
 }
 
