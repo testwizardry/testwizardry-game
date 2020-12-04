@@ -20,22 +20,40 @@ async function sendApplication()
 {
     console.log("sending application");
 
-    let PersonModule = await import('./Person.js');
-    console.log(PersonModule);
-    console.log(PersonModule.Person);
-
+    const PersonModule = await import('./Person.js');
+    const Person = PersonModule.Person;
+    
     let name = sessionStorage.getItem("character_name");
     let age = sessionStorage.getItem("character_age");
     let gender = sessionStorage.getItem("character_gender");
     let status = sessionStorage.getItem("character_status");
 
-    let player_character = new Person.Person(name, age, gender, status);
-    console.log("player_character", player_character);
-    localStorage.setItem("player_character", player_character);
+    let player_character = new Person(name, age, gender, status);
+    console.log("saving player character to local storage", player_character)
+    localStorage.setItem("player_character", JSON.stringify(player_character));
 
     alert("Your owl flutters off with the application clutched in it's talons!");
 
-    //let Application = await import("./Application")
+    const Hogwarts = await import("./Hogwarts.js");
+    console.log(Hogwarts);
+    console.log(Hogwarts.admissions);
+
+    let response = Hogwarts.admissions(player_character);
+    console.log("response", response);
+    sessionStorage.setItem("hogwarts_response", JSON.stringify(response));
+
+    if (response.accepted == true)
+    {
+        console.log("Congratulations, you've just been accepted to Hogwarts!");
+        window.location.href = "/accepted.html";
+
+    }
+    else 
+    {
+        console.log("Sorry, you were not accepted to Hogwarts!");
+        console.log(response.reason);
+        window.location.href = "/rejected.html";
+    }
 }
 
 async function getCharacterDataFromSessionStorage()
@@ -47,15 +65,15 @@ async function getCharacterDataFromSessionStorage()
     let gender = sessionStorage.getItem("character_gender");
     let status = sessionStorage.getItem("character_status");
 
-    console.log(name,age,gender,status);
+    console.log(name, age, gender, status);
 
-    let Person = (await import("./Person.js")).Person;
-    console.log(Person);
+    const PersonModule = await import('./Person.js');
+    const Person = PersonModule.Person;
 
-    let player_character = new Person(name, age, gender, status);
-    console.log(player_character);
+    let character = new Person(name, age, gender, status);
+    console.log(character);
 
-    return player_character;
+    return character;
 }
 
 async function populateCharacterDataFromSessionStorage()
@@ -78,4 +96,5 @@ async function populateCharacterDataFromSessionStorage()
     }
 }
 
+// pre-populate form fields if we have the character information in Session Storage
 document.addEventListener("DOMContentLoaded", populateCharacterDataFromSessionStorage);

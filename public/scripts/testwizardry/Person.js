@@ -90,6 +90,57 @@ class Person {
     {
         console.log("TODO: implement use item");
     }
+
+    store(key, method='session')
+    {
+        let json = JSON.stringify(this);
+
+        switch(method)
+        {
+            case "local":
+                // save to local storage
+                localStorage.setItem(key, json);
+                break;
+            case "session":
+                // save to session storage
+                sessionStorage.setItem(key, json);
+                break;
+            case "server":
+                // save to server
+                console.log("not implemented");
+                break;
+            default: 
+                // session?
+        }
+    }
+
+    retrieve(key, method='session')
+    {
+        let json = undefined;
+
+        switch(method)
+        {
+            case "local":
+                // save to local storage
+                json = localStorage.getItem(key);
+                break;
+            case "session":
+                // save to session storage
+                json = sessionStorage.getItem(key);
+                break;
+            case "server":
+                // save to server
+                console.log("not implemented");
+                break;
+            default: 
+                // session?
+        }
+
+        console.log("json from storage", json);
+
+        let obj = JSON.parse(json);
+		return new Person(obj.name, obj.age, obj.gender, obj.magical);
+    }
 }
 
 class Muggle extends Person

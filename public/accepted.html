@@ -9,16 +9,22 @@
 		<link rel="stylesheet" href="/styles/testwizardry.css"/>
 
 		<script>
-
-			async function getPlayerInfo()
+			async function updateTemplateLetter()
 			{
-				var player_character = localStorage.getItem("player_character");
-				console.log("player_character", player_character);
+				const Person = (await import("./scripts/testwizardry/Person.js")).Person;
+				console.log("Person", Person);
 
+				let person = new Person().retrieve("player_character", "local");
+				console.log(person);
 
+				let salutation = document.querySelector("#salutation");
+				salutation.innerHTML = person.salutation;
+
+				let surname = document.querySelector("#surname");
+				surname.innerHTML = person.lastName;
 			}
 		
-			document.addEventListener("DOMContentLoaded", getPlayerInfo);
+			document.addEventListener("DOMContentLoaded", updateTemplateLetter);
 		</script>
 	</head>
 	<body>
